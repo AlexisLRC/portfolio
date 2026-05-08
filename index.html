@@ -363,7 +363,7 @@ form.addEventListener('submit', function(e) {
   btn.disabled = true;
   btn.innerHTML = '<i class="fa fa-spinner fa-spin"></i> Envoi en cours…';
   const d = new FormData(form);
-  emailjs.send('default_service', 'template_hu5s7fs', {
+  emailjs.send('service_h3md7bp', 'template_hu5s7fs', {
     from_name: d.get('from_name'),
     reply_to:  d.get('reply_to'),
     phone:     d.get('phone') || 'Non renseigné',
