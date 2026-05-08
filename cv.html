@@ -1,66 +1,159 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mon portfolio</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <style>
-        .pdf-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .button-container {
-            display: flex;
-            justify-content: center;
-            width: 100%;
-            margin-top: 20px;
-        }
-        .download-button {
-            margin-top: 20px;
-            padding: 10px 20px;
-            background-color: #007BFF;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            text-decoration: none;
-            font-size: 16px;
-            cursor: pointer;
-        }
-        .download-button:hover {
-            background-color: #0056b3;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CV — Alexis Le Rocheleuil</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<style>
+:root{--bg:#07090f;--bg2:#0c0f1a;--surface:#111520;--border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.12);--text:#e2e8f4;--muted:#5a6585;--muted2:#8492b4;--green:#22d3a5;--blue:#4f8ef7;--display:'Plus Jakarta Sans',sans-serif;--mono:'Fira Code',monospace}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--display);min-height:100vh;overflow-x:hidden}
+body::after{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(255,255,255,0.015) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.015) 1px,transparent 1px);background-size:60px 60px;pointer-events:none;z-index:0}
+
+/* HEADER */
+header{position:fixed;top:0;left:0;right:0;z-index:200;height:64px;padding:0 6vw;display:flex;align-items:center;justify-content:space-between;background:rgba(7,9,15,0.88);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.logo{font-family:var(--display);font-weight:800;font-size:17px;color:var(--text);text-decoration:none;letter-spacing:-0.03em}
+.logo em{color:var(--green);font-style:normal}
+nav{display:flex;align-items:center;gap:2rem}
+nav a{font-size:13px;font-weight:500;color:var(--muted2);text-decoration:none;transition:color .2s}
+nav a:hover{color:var(--text)}
+.nav-back{display:inline-flex;align-items:center;gap:6px;padding:8px 18px;border:1px solid var(--border2);border-radius:7px;font-size:13px;font-weight:600;color:var(--text);text-decoration:none;transition:border-color .2s,color .2s}
+.nav-back:hover{border-color:var(--green);color:var(--green)}
+.nav-dl{display:inline-flex;align-items:center;gap:6px;padding:8px 18px;background:var(--green);color:#07090f;border-radius:7px;font-size:13px;font-weight:700;text-decoration:none;transition:opacity .2s}
+.nav-dl:hover{opacity:.85}
+
+/* HERO MINI */
+.cv-hero{position:relative;z-index:1;padding:100px 6vw 48px;display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:24px}
+.cv-hero-left{}
+.cv-hero-tag{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;color:var(--green);border:1px solid rgba(34,211,165,0.2);background:rgba(34,211,165,0.06);padding:5px 14px;border-radius:100px;margin-bottom:16px}
+.cv-hero h1{font-family:var(--display);font-size:clamp(32px,4vw,52px);font-weight:800;letter-spacing:-.04em;line-height:1.05;margin-bottom:10px}
+.cv-hero h1 span{background:linear-gradient(135deg,var(--green),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.cv-hero-sub{font-size:15px;color:var(--muted2)}
+.cv-hero-actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.btn-dl{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;background:var(--green);color:#07090f;font-weight:700;font-size:14px;border-radius:8px;text-decoration:none;transition:opacity .2s,transform .2s}
+.btn-dl:hover{opacity:.88;transform:translateY(-1px)}
+.btn-back{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;border:1px solid var(--border2);color:var(--text);font-weight:600;font-size:14px;border-radius:8px;text-decoration:none;transition:border-color .2s,color .2s}
+.btn-back:hover{border-color:var(--green);color:var(--green)}
+
+/* PDF VIEWER */
+.pdf-section{position:relative;z-index:1;padding:0 6vw 80px}
+.pdf-wrapper{background:var(--surface);border:1px solid var(--border);border-radius:16px;overflow:hidden;max-width:980px;margin:0 auto}
+.pdf-toolbar{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;border-bottom:1px solid var(--border);background:var(--bg2)}
+.pdf-toolbar-title{font-family:var(--mono);font-size:12px;color:var(--muted2);display:flex;align-items:center;gap:8px}
+.pdf-toolbar-title i{color:var(--green)}
+.pdf-toolbar-actions{display:flex;gap:8px}
+.tb-btn{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:6px;font-size:12px;font-weight:600;text-decoration:none;transition:.2s;cursor:pointer;font-family:var(--display)}
+.tb-dl{background:var(--green);color:#07090f;border:none}
+.tb-dl:hover{opacity:.85}
+.tb-print{background:transparent;border:1px solid var(--border2);color:var(--muted2)}
+.tb-print:hover{border-color:var(--green);color:var(--green)}
+
+.pdf-embed-container{width:100%;background:#1a1a2e;min-height:1400px;display:flex;flex-direction:column;align-items:center;justify-content:flex-start}
+.pdf-embed-container embed,
+.pdf-embed-container iframe{width:100%;height:1400px;border:none;display:block}
+
+/* Fallback si pas de PDF */
+.pdf-fallback{display:none;flex-direction:column;align-items:center;justify-content:center;padding:80px 24px;text-align:center;gap:20px;min-height:60vh}
+.pdf-fallback i{font-size:48px;color:var(--muted)}
+.pdf-fallback h3{font-size:20px;font-weight:700;color:var(--text)}
+.pdf-fallback p{font-size:14px;color:var(--muted2);max-width:400px;line-height:1.7}
+
+/* CV INLINE (affiché si pas de PDF) */
+.cv-inline{display:none;padding:40px;max-width:860px;margin:0 auto}
+
+/* Séparateur */
+.divider{height:1px;background:var(--border);margin:0 6vw}
+
+/* Footer */
+footer{position:relative;z-index:1;padding:24px 6vw;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px}
+.footer-copy{font-family:var(--mono);font-size:11.5px;color:var(--muted)}
+.soc-btn{width:38px;height:38px;background:var(--surface);border:1px solid var(--border);border-radius:9px;display:flex;align-items:center;justify-content:center;color:var(--muted2);font-size:14px;text-decoration:none;transition:border-color .2s,color .2s}
+.soc-btn:hover{border-color:var(--green);color:var(--green)}
+
+@media(max-width:640px){
+  .cv-hero{padding:90px 6vw 32px}
+  nav .nav-back,.nav-dl{display:none}
+  .pdf-embed-container embed,.pdf-embed-container iframe{height:1000px}
+}
+</style>
 </head>
-
 <body>
-    <header class="header">
-        <a href="index.html#acceuil" class="logo">Alexis</a>
-        <i class="fa-solid fa-bars" class="menu-icon"></i>
-        <nav class="navbar">
-            <a href="index.html#acceuil" class="active">Accueil</a>
-            <a href="index.html#services">Projets</a>
-            <a href="index.html#compétences">Compétences</a>
-            <a href="index.html#etude">Étude</a>
-            <a href="index.html#contact">Contact</a>
-            <a href="Stage.html">Blog</a>
-            <a href="tableau.html">Tableau de synthèse</a>
-            <a href="cv.html">Mon CV</a>
-        </nav>
-    </header>
 
-    <main>
-        
-        <div class="pdf-container">
-            <embed src="CV_Alexis_LeRocheleuil.pdf" type="application/pdf" width="60%" height="1400px" />
-        </div>
-        <div class="button-container">
-            <a href="CV_Alexis_LeRocheleuil.pdf" download class="download-button">Télécharger le PDF</a>
-        </div>
-    </main>
+<!-- HEADER -->
+<header>
+  <a href="index.html" class="logo">Alexis Le Rocheleuil<em>.</em></a>
+  <nav>
+    <a href="index.html#projets">Projets</a>
+    <a href="index.html#competences">Compétences</a>
+    <a href="index.html#contact">Contact</a>
+    <a href="CV_Alexis_LeRocheleuil.pdf" download="CV_Alexis_LeRocheleuil.pdf" class="nav-dl"><i class="fa fa-download"></i> Télécharger</a>
+    <a href="index.html" class="nav-back"><i class="fa fa-arrow-left"></i> Retour</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<div class="cv-hero">
+  <div class="cv-hero-left">
+    <div class="cv-hero-tag"><i class="fa fa-file-pdf"></i> Curriculum Vitae</div>
+    <h1>Alexis <span>Le Rocheleuil</span></h1>
+    <p class="cv-hero-sub">Développeur Fullstack &middot; Alternant CDA &middot; EAMEA &times; CESI</p>
+  </div>
+  <div class="cv-hero-actions">
+    <a href="CV_Alexis_LeRocheleuil.pdf" download="CV_Alexis_LeRocheleuil.pdf" class="btn-dl"><i class="fa fa-download"></i> Télécharger le PDF</a>
+    <a href="index.html" class="btn-back"><i class="fa fa-arrow-left"></i> Retour au portfolio</a>
+  </div>
+</div>
+
+<!-- PDF VIEWER -->
+<div class="pdf-section">
+  <div class="pdf-wrapper">
+    <div class="pdf-toolbar">
+      <div class="pdf-toolbar-title">
+        <i class="fa fa-file-pdf"></i>
+        CV_Alexis_LeRocheleuil.pdf
+      </div>
+    </div>
+    <div class="pdf-embed-container" id="pdfContainer">
+      <embed
+        src="CV_Alexis_LeRocheleuil.pdf#toolbar=0&navpanes=0&scrollbar=0&view=FitH"
+        type="application/pdf"
+        width="100%"
+        height="1400"
+        id="pdfEmbed"
+      />
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-copy">© 2025 Alexis Le Rocheleuil — Développeur Fullstack</span>
+  <div style="display:flex;gap:10px">
+    <a href="https://github.com/AlexisLRC" target="_blank" class="soc-btn"><i class="fab fa-github"></i></a>
+    <a href="https://www.linkedin.com/in/alexis-le-rocheleuil-193935315/" target="_blank" class="soc-btn"><i class="fab fa-linkedin"></i></a>
+  </div>
+</footer>
+
+<script>
+// Si l'embed ne charge pas (mobile, Firefox...), afficher un fallback avec lien direct
+const embed = document.getElementById('pdfEmbed');
+
+const container = document.getElementById('pdfContainer');
+
+// Sur mobile, remplacer par iframe qui marche mieux
+if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+  container.innerHTML = `
+    <iframe
+      src="https://docs.google.com/viewer?url=${encodeURIComponent(window.location.origin + '/CV_Alexis_LeRocheleuil.pdf')}&embedded=true"
+      width="100%" height="100%" style="border:none;height:85vh"
+      title="CV Alexis Le Rocheleuil">
+    </iframe>
+  `;
+}
+</script>
 </body>
-
 </html>

@@ -1,205 +1,392 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mon portfolio</title>
-    <link rel="stylesheet" href="style.css">
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alexis Le Rocheleuil — Développeur Fullstack</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<style>
+:root{--bg:#07090f;--bg2:#0c0f1a;--surface:#111520;--surface2:#161b2e;--border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.12);--text:#e2e8f4;--muted:#5a6585;--muted2:#8492b4;--green:#22d3a5;--blue:#4f8ef7;--purple:#9b72f7;--orange:#f97316;--display:'Plus Jakarta Sans',sans-serif;--body:'Plus Jakarta Sans',sans-serif;--mono:'Fira Code',monospace}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--body);font-size:16px;line-height:1.6;overflow-x:hidden}
+body::after{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(255,255,255,0.015) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.015) 1px,transparent 1px);background-size:60px 60px;pointer-events:none;z-index:0}
+header{position:fixed;top:0;left:0;right:0;z-index:200;height:64px;padding:0 6vw;display:flex;align-items:center;justify-content:space-between;background:rgba(7,9,15,0.88);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.logo{font-family:var(--display);font-weight:800;font-size:17px;color:var(--text);text-decoration:none;letter-spacing:-0.03em}
+.logo em{color:var(--green);font-style:normal}
+nav{display:flex;align-items:center;gap:2rem}
+nav a{font-size:13px;font-weight:500;color:var(--muted2);text-decoration:none;transition:color .2s}
+nav a:hover{color:var(--text)}
+.nav-cta{padding:8px 20px;background:var(--green);color:#07090f!important;border-radius:7px;font-weight:700!important}
+.nav-cta:hover{opacity:.85!important}
+.menu-toggle{display:none;background:none;border:1px solid var(--border2);color:var(--text);width:36px;height:36px;border-radius:8px;cursor:pointer;font-size:14px}
+.hero{position:relative;z-index:1;min-height:100vh;padding:130px 6vw 80px;display:flex;align-items:center;overflow:hidden}
+.blob{position:absolute;border-radius:50%;filter:blur(80px);pointer-events:none}
+.blob1{width:500px;height:500px;background:rgba(34,211,165,0.07);top:5%;right:10%;animation:drift 10s ease-in-out infinite}
+.blob2{width:350px;height:350px;background:rgba(79,142,247,0.06);bottom:15%;left:5%;animation:drift 13s ease-in-out infinite reverse}
+@keyframes drift{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(30px,-40px) scale(1.05)}}
+.hero-inner{max-width:1100px;position:relative;z-index:1}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11.5px;color:var(--green);border:1px solid rgba(34,211,165,0.2);background:rgba(34,211,165,0.06);padding:6px 16px;border-radius:100px;margin-bottom:32px;animation:fadeUp .5s ease both}
+.dot-live{width:7px;height:7px;border-radius:50%;background:var(--green);animation:blink 2s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.2}}
+.hero h1{font-family:var(--display);font-size:clamp(44px,6.5vw,82px);font-weight:800;line-height:1.02;letter-spacing:-.04em;margin-bottom:28px;animation:fadeUp .5s .1s ease both}
+.h1-name{display:block}
+.h1-role{display:block;background:linear-gradient(135deg,var(--green) 0%,var(--blue) 60%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.h1-muted{display:block;color:var(--muted);font-weight:600;font-size:.72em;margin-top:8px}
+.hero-desc{font-size:17px;color:var(--muted2);max-width:500px;margin-bottom:42px;line-height:1.75;animation:fadeUp .5s .2s ease both}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;animation:fadeUp .5s .3s ease both}
+.btn-main{display:inline-flex;align-items:center;gap:8px;padding:13px 26px;background:var(--green);color:#07090f;font-weight:700;font-size:14px;border-radius:8px;text-decoration:none;transition:transform .2s,opacity .2s}
+.btn-main:hover{transform:translateY(-2px);opacity:.9}
+.btn-out{display:inline-flex;align-items:center;gap:8px;padding:13px 26px;border:1px solid var(--border2);color:var(--text);font-weight:600;font-size:14px;border-radius:8px;text-decoration:none;transition:border-color .2s,color .2s}
+.btn-out:hover{border-color:var(--green);color:var(--green)}
+.hero-pills{margin-top:56px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;animation:fadeUp .5s .4s ease both}
+.pills-label{font-family:var(--mono);font-size:10.5px;color:var(--muted);letter-spacing:.1em}
+.pills{display:flex;gap:7px;flex-wrap:wrap}
+.pill{font-family:var(--mono);font-size:11px;padding:4px 11px;border-radius:100px;border:1px solid var(--border);color:var(--muted2);background:var(--surface)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+.section{position:relative;z-index:1;padding:100px 6vw}
+.section.alt{background:var(--bg2)}
+.s-label{font-family:var(--mono);font-size:11px;color:var(--green);letter-spacing:.14em;text-transform:uppercase;margin-bottom:10px}
+.s-title{font-family:var(--display);font-size:clamp(28px,3.5vw,42px);font-weight:800;letter-spacing:-.03em;margin-bottom:14px;line-height:1.1}
+.s-sub{color:var(--muted2);font-size:16px;max-width:480px;margin-bottom:56px;line-height:1.7}
+.projects-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.pcard{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:26px;text-decoration:none;color:var(--text);display:flex;flex-direction:column;gap:14px;transition:border-color .25s,transform .25s,background .25s;position:relative;overflow:hidden}
+.pcard:hover{border-color:rgba(34,211,165,0.3);transform:translateY(-3px);background:var(--surface2)}
+.pcard.wide{grid-column:span 2}
+.pcard-accent{position:absolute;top:0;left:0;right:0;height:1px;transform:scaleX(0);transform-origin:left;transition:transform .35s}
+.pcard:hover .pcard-accent{transform:scaleX(1)}
+.acc-green{background:linear-gradient(90deg,var(--green),transparent)}
+.acc-blue{background:linear-gradient(90deg,var(--blue),transparent)}
+.acc-purple{background:linear-gradient(90deg,var(--purple),transparent)}
+.acc-orange{background:linear-gradient(90deg,var(--orange),transparent)}
+.pcard-icon{width:44px;height:44px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:18px}
+.ig{background:rgba(34,211,165,0.1);color:var(--green)}
+.ib{background:rgba(79,142,247,0.1);color:var(--blue)}
+.ip{background:rgba(155,114,247,0.1);color:var(--purple)}
+.io{background:rgba(249,115,22,0.1);color:var(--orange)}
+.pcard-tag{font-family:var(--mono);font-size:10px;color:var(--muted2);letter-spacing:.06em}
+.pcard-title{font-family:var(--display);font-size:16px;font-weight:700;letter-spacing:-.02em;line-height:1.25}
+.pcard-desc{font-size:13.5px;color:var(--muted2);line-height:1.65;flex:1}
+.pcard-techs{display:flex;gap:6px;flex-wrap:wrap}
+.tech{font-family:var(--mono);font-size:10px;padding:3px 9px;border:1px solid var(--border);border-radius:4px;color:var(--muted)}
+.pcard-link{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:11px;color:var(--green);text-decoration:none;margin-top:auto;transition:gap .2s}
+.pcard-link:hover{gap:10px}
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px}
+.scard{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:28px 30px}
+.scard-head{display:flex;align-items:center;gap:10px;font-weight:700;font-size:15px;margin-bottom:18px}
+.scard-head i{font-size:16px}
+.stags{display:flex;flex-wrap:wrap;gap:8px}
+.stag{font-family:var(--mono);font-size:12.5px;padding:6px 14px;border-radius:6px;background:rgba(255,255,255,0.04);border:1px solid var(--border2);color:var(--muted2)}
+.timeline{max-width:680px;position:relative}
+.timeline::before{content:'';position:absolute;left:15px;top:6px;bottom:0;width:1px;background:linear-gradient(to bottom,var(--green) 0%,var(--blue) 50%,transparent 100%);opacity:.4}
+.titem{padding-left:50px;position:relative;margin-bottom:32px}
+.tdot{position:absolute;left:8px;top:4px;width:16px;height:16px;border-radius:50%;background:var(--bg2);border:2px solid var(--green);z-index:1}
+.tdot.b{border-color:var(--blue)}
+.tdot.p{border-color:var(--purple)}
+.tdate{font-family:var(--mono);font-size:11px;color:var(--green);margin-bottom:5px}
+.tdate.b{color:var(--blue)}
+.tdate.p{color:var(--purple)}
+.ttitle{font-weight:700;font-size:15px;letter-spacing:-.01em;margin-bottom:2px}
+.tsub{font-size:13px;color:var(--muted2)}
+.cv-block{display:flex;align-items:center;gap:40px;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:36px 40px;flex-wrap:wrap}
+.cv-left{flex:1;min-width:260px}
+.cv-left h3{font-family:var(--display);font-size:22px;font-weight:800;letter-spacing:-.03em;margin-bottom:10px}
+.cv-left p{font-size:14px;color:var(--muted2);line-height:1.7;margin-bottom:20px}
+.cv-btns{display:flex;gap:10px;flex-wrap:wrap}
+.cv-dl{display:inline-flex;align-items:center;gap:8px;padding:11px 22px;background:var(--green);color:#07090f;font-weight:700;font-size:13px;border-radius:8px;text-decoration:none;transition:opacity .2s}
+.cv-dl:hover{opacity:.85}
+.cv-view{display:inline-flex;align-items:center;gap:8px;padding:11px 22px;border:1px solid var(--border2);color:var(--text);font-weight:600;font-size:13px;border-radius:8px;text-decoration:none;transition:border-color .2s,color .2s}
+.cv-view:hover{border-color:var(--green);color:var(--green)}
+.cv-preview{width:140px;aspect-ratio:210/297;background:var(--surface2);border:1px solid var(--border2);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;color:var(--muted);font-size:12px;text-align:center;padding:12px}
+.cv-preview i{font-size:28px}
+.about-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:64px;align-items:start}
+.about-text p{color:var(--muted2);font-size:15.5px;line-height:1.8;margin-bottom:16px}
+.about-text strong{color:var(--text);font-weight:600}
+.socials{display:flex;gap:10px;margin-top:24px}
+.soc-btn{width:40px;height:40px;background:var(--surface);border:1px solid var(--border);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--muted2);font-size:15px;text-decoration:none;transition:border-color .2s,color .2s}
+.soc-btn:hover{border-color:var(--green);color:var(--green)}
+.stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.stat{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:22px 18px;text-align:center}
+.stat-n{font-family:var(--display);font-size:34px;font-weight:800;letter-spacing:-.04em;background:linear-gradient(135deg,var(--green),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.stat-l{font-size:12px;color:var(--muted);font-family:var(--mono);margin-top:4px}
+.contact-grid{display:grid;grid-template-columns:1fr 1.5fr;gap:60px;align-items:start}
+.contact-items{display:flex;flex-direction:column;gap:14px;margin-bottom:28px}
+.citem{display:flex;align-items:center;gap:14px;font-size:14px;color:var(--muted2)}
+.citem-icon{width:38px;height:38px;background:var(--surface);border:1px solid var(--border);border-radius:9px;display:flex;align-items:center;justify-content:center;color:var(--green);font-size:14px;flex-shrink:0}
+form{display:flex;flex-direction:column;gap:12px}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+input,textarea{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px 15px;color:var(--text);font-family:var(--body);font-size:14px;outline:none;width:100%;transition:border-color .2s}
+input:focus,textarea:focus{border-color:var(--green)}
+input::placeholder,textarea::placeholder{color:var(--muted)}
+textarea{resize:vertical;min-height:130px}
+.btn-send{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 28px;background:var(--green);color:#07090f;font-weight:700;font-size:14px;border-radius:8px;border:none;cursor:pointer;transition:opacity .2s,transform .2s;font-family:var(--body)}
+.btn-send:hover{opacity:.9;transform:translateY(-1px)}
+.btn-send:disabled{opacity:.6;cursor:not-allowed;transform:none}
+footer{position:relative;z-index:1;padding:28px 6vw;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px}
+.footer-copy{font-family:var(--mono);font-size:11.5px;color:var(--muted)}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:none}
+@media(max-width:1024px){.projects-grid{grid-template-columns:1fr 1fr}.pcard.wide{grid-column:span 2}}
+@media(max-width:768px){nav{display:none}nav.open{display:flex;flex-direction:column;position:fixed;top:64px;left:0;right:0;background:var(--bg2);padding:24px 6vw;border-bottom:1px solid var(--border);gap:20px;z-index:199}.menu-toggle{display:flex;align-items:center;justify-content:center}.projects-grid{grid-template-columns:1fr}.pcard.wide{grid-column:span 1}.about-grid{grid-template-columns:1fr}.contact-grid{grid-template-columns:1fr}.frow{grid-template-columns:1fr}.cv-block{flex-direction:column}.cv-preview{display:none}.hero-inner{flex-direction:column-reverse;text-align:center;gap:30px!important}.hero-btns,.hero-pills{justify-content:center;margin-top:30px}.hero-photo{width:200px!important;height:200px!important}}
+</style>
 </head>
+<body>
+<header>
+  <a href="#accueil" class="logo">Alexis Le Rocheleuil<em>.</em></a>
+  <nav id="navbar">
+    <a href="#projets">Projets</a>
+    <a href="#competences">Compétences</a>
+    <a href="#parcours">Parcours</a>
+    <a href="#cv">CV</a>
+    <a href="#apropos">À propos</a>
+    <a href="#contact" class="nav-cta">Contact</a>
+  </nav>
+  <button class="menu-toggle" id="menuToggle"><i class="fa fa-bars"></i></button>
+</header>
 
-    <body>
-        <header class="header">
-            <a href="#acceuil" class="logo">Alexis</a>
+<section class="hero" id="accueil">
+  <div class="blob blob1"></div>
+  <div class="blob blob2"></div>
+  <div class="hero-inner" style="display: flex; align-items: center; justify-content: space-between; gap: 40px; width: 100%;">
+    <div>
+      <div class="hero-badge"><div class="dot-live"></div>Disponible pour missions freelance remote</div>
+      <h1>
+        <span class="h1-name">Alexis Le Rocheleuil</span>
+        <span class="h1-role">Développeur Fullstack</span>
+        <span class="h1-muted">Concepteur Développeur d'Applications &middot; EAMEA &times; CESI</span>
+      </h1>
+      <p class="hero-desc">Je conçois et développe des applications web robustes, du frontend au backend. Autonome, rigoureux, orienté résultat.</p>
+      <div class="hero-btns">
+        <a href="#projets" class="btn-main"><i class="fa fa-code"></i> Voir mes projets</a>
+        <a href="#contact" class="btn-out"><i class="fa fa-paper-plane"></i> Me contacter</a>
+      </div>
+      <div class="hero-pills">
+        <span class="pills-label">STACK &middot;</span>
+        <div class="pills">
+          <span class="pill">React</span><span class="pill">Node.js</span><span class="pill">Symfony</span><span class="pill">Python</span><span class="pill">PHP</span><span class="pill">SQL</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-photo" style="flex-shrink: 0; width: 280px; height: 280px; border-radius: 50%; border: 2px solid var(--border); overflow: hidden; background: var(--surface2); display: flex; align-items: center; justify-content: center;">
+      <!-- Remplace le src par le chemin de ta photo -->
+      <img src="placeholder.jpg" alt="Photo de profil" style="width: 100%; height: 100%; object-fit: cover;">
+    </div>
+  </div>
+</section>
 
-            <i class="fa-solid fa-bars menu-icon"></i>
+<section class="section alt" id="projets">
+  <div class="reveal">
+    <p class="s-label">// 01 &middot; Réalisations</p>
+    <h2 class="s-title">Mes projets</h2>
+    <p class="s-sub">Des projets concrets, menés en alternance et en autonomie.</p>
+  </div>
+  <div class="projects-grid reveal">
+    <div class="pcard wide">
+      <div class="pcard-accent acc-green"></div>
+      <div class="pcard-icon ig"><i class="fa fa-wind"></i></div>
+      <span class="pcard-tag">ALTERNANCE · EAMEA · 2025–2026</span>
+      <div class="pcard-title">Application de dispersion atmosphérique</div>
+      <p class="pcard-desc">Modélisation et visualisation de la dispersion de particules dans l'atmosphère développée en Python pour l'EAMEA. Contexte de sécurité nucléaire et militaire.</p>
+      <div class="pcard-techs"><span class="tech">Python</span><span class="tech">Matplotlib</span><span class="tech">NumPy</span><span class="tech">Modélisation physique</span></div>
+    </div>
+    <div class="pcard">
+      <div class="pcard-accent acc-blue"></div>
+      <div class="pcard-icon ib"><i class="fa fa-globe"></i></div>
+      <span class="pcard-tag">ALTERNANCE · EAMEA · 2025–2026</span>
+      <div class="pcard-title">Application web — Symfony</div>
+      <p class="pcard-desc">Application web interne développée avec Symfony. Authentification, gestion de données et interface d'administration en environnement militaire.</p>
+      <div class="pcard-techs"><span class="tech">Symfony</span><span class="tech">PHP</span><span class="tech">MySQL</span><span class="tech">Twig</span></div>
+    </div>
+    <div class="pcard">
+      <div class="pcard-accent acc-purple"></div>
+      <div class="pcard-icon ip"><i class="fa fa-database"></i></div>
+      <span class="pcard-tag">ALTERNANCE · EAMEA · 2025–2026</span>
+      <div class="pcard-title">Gestion BDD — iReport</div>
+      <p class="pcard-desc">Administration des bases de données de l'EAMEA. Génération de rapports, tableaux de bord et exports via iReport.</p>
+      <div class="pcard-techs"><span class="tech">iReport</span><span class="tech">SQL</span><span class="tech">MariaDB</span></div>
+    </div>
+    <div class="pcard">
+      <div class="pcard-accent acc-orange"></div>
+      <div class="pcard-icon io"><i class="fa fa-chart-line"></i></div>
+      <span class="pcard-tag">PROJET PERSO · 2024</span>
+      <div class="pcard-title">Bot Finance Python</div>
+      <p class="pcard-desc">Analyse du marché LVMH sur court et long terme. Suivi du cours et signaux d'achat/vente via l'API yfinance.</p>
+      <div class="pcard-techs"><span class="tech">Python</span><span class="tech">yfinance</span><span class="tech">Matplotlib</span></div>
+      <a href="https://github.com/AlexisLRC/Botfinance-python" target="_blank" class="pcard-link">GitHub <i class="fa fa-arrow-right"></i></a>
+    </div>
+    <div class="pcard">
+      <div class="pcard-accent acc-green"></div>
+      <div class="pcard-icon ig"><i class="fa fa-shop"></i></div>
+      <span class="pcard-tag">STAGE · 2024</span>
+      <div class="pcard-title">Site e-commerce — Essence de bois</div>
+      <p class="pcard-desc">Site de vente en ligne complet. Panier, BDD produits, inscription/connexion, architecture MVC en PHP.</p>
+      <div class="pcard-techs"><span class="tech">PHP</span><span class="tech">HTML/CSS</span><span class="tech">MySQL</span><span class="tech">MVC</span></div>
+      <a href="http://essences.btssio17.com/" target="_blank" class="pcard-link">Voir le site <i class="fa fa-arrow-right"></i></a>
+    </div>
+    <div class="pcard">
+      <div class="pcard-accent acc-blue"></div>
+      <div class="pcard-icon ib"><i class="fa fa-mobile-alt"></i></div>
+      <span class="pcard-tag">PROJET SCOLAIRE · 2024</span>
+      <div class="pcard-title">SolidariBox — App Android</div>
+      <p class="pcard-desc">Application mobile pour réduire le gaspillage alimentaire via des boîtes à dons connectées.</p>
+      <div class="pcard-techs"><span class="tech">Android Studio</span><span class="tech">Java</span><span class="tech">SQLite</span></div>
+      <a href="https://github.com/Gabin-E/Solidaribox" target="_blank" class="pcard-link">GitHub <i class="fa fa-arrow-right"></i></a>
+    </div>
+  </div>
+</section>
 
-            <nav class="navbar">
-                <a href="#acceuil" class="active">Accueil</a>
-                <a href="#services">Projets</a>
-                <a href="#compétences">Compétences</a>
-                <a href="#etude">Etude</a>
-                <a href="#contact">Contact</a>
-                <a href="Stage.html">Blog</a>
-                <a href="tableau.html">Tableau de synthèse</a>
-                <a href="cv.html">Mon CV</a>
+<section class="section" id="competences">
+  <div class="reveal">
+    <p class="s-label">// 02 &middot; Savoir-faire</p>
+    <h2 class="s-title">Compétences</h2>
+    <p class="s-sub">Full stack de A à Z, de l'interface à la base de données.</p>
+  </div>
+  <div class="skills-grid reveal">
+    <div class="scard"><div class="scard-head" style="color:var(--green)"><i class="fa fa-desktop"></i> Frontend</div><div class="stags"><span class="stag">React</span><span class="stag">Next.js</span><span class="stag">HTML5</span><span class="stag">CSS3</span><span class="stag">JavaScript</span></div></div>
+    <div class="scard"><div class="scard-head" style="color:var(--blue)"><i class="fa fa-server"></i> Backend</div><div class="stags"><span class="stag">Node.js</span><span class="stag">Symfony</span><span class="stag">Laravel</span><span class="stag">PHP</span><span class="stag">Python</span></div></div>
+    <div class="scard"><div class="scard-head" style="color:var(--purple)"><i class="fa fa-database"></i> Base de données</div><div class="stags"><span class="stag">MySQL</span><span class="stag">MariaDB</span><span class="stag">iReport</span><span class="stag">SQL</span></div></div>
+    <div class="scard"><div class="scard-head" style="color:var(--orange)"><i class="fa fa-wrench"></i> Outils &amp; Infra</div><div class="stags"><span class="stag">Git</span><span class="stag">Linux</span><span class="stag">Docker</span><span class="stag">Bash</span></div></div>
+  </div>
+</section>
 
-            </nav>
-        </header>
+<section class="section alt" id="parcours">
+  <div class="reveal">
+    <p class="s-label">// 03 &middot; Expériences</p>
+    <h2 class="s-title">Parcours</h2>
+    <p class="s-sub">Formations et expériences professionnelles.</p>
+  </div>
+  <div class="timeline reveal">
+    <div class="titem"><div class="tdot"></div><div class="tdate">2025 – 2026</div><div class="ttitle">Alternant CDA — EAMEA · Cherbourg</div><div class="tsub">Concepteur Développeur d'Applications · Python, Symfony, iReport</div></div>
+    <div class="titem"><div class="tdot b"></div><div class="tdate b">2025 – 2026</div><div class="ttitle">Titre RNCP CDA niv.6 — CESI · Lagord</div><div class="tsub">Concepteur Développeur d'Applications</div></div>
+    <div class="titem"><div class="tdot p"></div><div class="tdate p">Fév. – Mars 2025</div><div class="ttitle">Stagiaire Dev — Léa Nature · Périgny</div><div class="tsub">Scripts Batch/PowerShell, déploiement SCCM, gestion BDD</div></div>
+    <div class="titem"><div class="tdot"></div><div class="tdate">Mars – Avr. 2024</div><div class="ttitle">Stagiaire Dev Web — Émile Combes de Pons</div><div class="tsub">Site e-commerce PHP/HTML/CSS, architecture MVC</div></div>
+    <div class="titem"><div class="tdot b"></div><div class="tdate b">2023 – 2025</div><div class="ttitle">BTS SIO SLAM — Merleau-Ponty · Rochefort</div><div class="tsub">Services Informatiques aux Organisations</div></div>
+    <div class="titem"><div class="tdot p"></div><div class="tdate p">2020 – 2023</div><div class="ttitle">Bac Pro SN (RISC) — Rompsay · La Rochelle</div><div class="tsub">Systèmes Numériques option Réseaux</div></div>
+  </div>
+</section>
 
-        <section class="acceuil" id="acceuil">
-            <div class="acceuil-img">
-                <img src="image/img1.png" alt="">
-            </div>
-            <div class="home content">
-                <h1 class="taille"><span>Alexis Le Rocheleuil</span></h1>
-                <h3 class="typing-text">Etudiant en <span></span></h3>
-                <p class="paragraphe">Je suis actuellement etudiant au lycée Merleau-Ponty situé à rochefort en BTS SIO (Services Informatique
-                    aux Organisations) option SLAM  (Solutions Logicielles et Applications Métiers) en première année
-                </p>
+<section class="section" id="cv">
+  <div class="reveal">
+    <p class="s-label">// 04 &middot; Mon CV</p>
+    <h2 class="s-title">Curriculum Vitae</h2>
+    <p class="s-sub">Téléchargez ou consultez mon CV complet.</p>
+  </div>
+  <div class="cv-block reveal">
+    <div class="cv-left">
+      <h3>Alexis Le Rocheleuil</h3>
+      <p>Développeur Fullstack · Alternant CDA à l'EAMEA · Disponible pour missions freelance ponctuelles en remote.<br>React, Node.js, Symfony, Python, PHP, SQL.</p>
+      <div class="cv-btns">
+        <a href="CV_Alexis_LeRocheleuil.pdf" download="CV_Alexis_LeRocheleuil.pdf" class="cv-dl"><i class="fa fa-download"></i> Télécharger le PDF</a>
+        <a href="Cv.html" class="cv-view"><i class="fa fa-eye"></i> Voir en ligne</a>
+      </div>
+    </div>
+    <div class="cv-preview" style="padding: 0; display: block; overflow: hidden; width: 380px; height: 537px; border-radius: 8px; flex-shrink: 0; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
+      <iframe src="CV_Alexis_LeRocheleuil.pdf" type="application/pdf" style="width: 100%; height: 100%; border: none;" title="Aperçu du CV"></iframe>
+    </div>
+  </div>
+</section>
 
-                <div class="social-icon">
-                    <a href="https://www.linkedin.com/in/alexis-le-rocheleuil-193935315/"><i class="fa-brands fa-linkedin"></i></a>
-                    <a href="https://github.com/1lerochA"><i class="fa-brands fa-github"></i></a>
-                    <a href="#"><i class="fa-brands fa-square-instagram"></i></a>
-                </div>
+<section class="section alt" id="apropos">
+  <div class="reveal">
+    <p class="s-label">// 05 &middot; Qui suis-je</p>
+    <h2 class="s-title">À propos</h2>
+  </div>
+  <div class="about-grid reveal">
+    <div class="about-text">
+      <p>Je suis <strong>Alexis Le Rocheleuil</strong>, développeur fullstack en alternance à l'<strong>EAMEA</strong> à Cherbourg, dans le cadre du titre RNCP Concepteur Développeur d'Applications au <strong>CESI</strong>.</p>
+      <p>Passionné par le développement web et les applications métier, je suis à l'aise sur l'ensemble de la stack : <strong>React, Node.js, Symfony, PHP, Python, SQL</strong>. J'aime construire des choses solides qui résolvent de vrais problèmes.</p>
+      <p>Je suis <strong>disponible pour des missions freelance ponctuelles en remote</strong>. Un projet précis ? Contactez-moi directement.</p>
+      <div class="socials">
+        <a href="https://www.linkedin.com/in/alexis-le-rocheleuil-193935315/" target="_blank" class="soc-btn"><i class="fab fa-linkedin"></i></a>
+        <a href="https://github.com/AlexisLRC" target="_blank" class="soc-btn"><i class="fab fa-github"></i></a>
+        <a href="CV_Alexis_LeRocheleuil.pdf" download class="soc-btn" title="CV"><i class="fa fa-file-pdf"></i></a>
+      </div>
+    </div>
+    <div class="stats-grid">
+      <div class="stat"><div class="stat-n">6+</div><div class="stat-l">Projets réalisés</div></div>
+      <div class="stat"><div class="stat-n">3</div><div class="stat-l">Stages / missions</div></div>
+      <div class="stat"><div class="stat-n">10+</div><div class="stat-l">Technos maîtrisées</div></div>
+      <div class="stat"><div class="stat-n">100%</div><div class="stat-l">Remote friendly</div></div>
+    </div>
+  </div>
+</section>
 
-                <a href="#etude" class="btn">À propos de moi</a>
-                
-            </div>
-        </section>
+<section class="section" id="contact">
+  <div class="reveal">
+    <p class="s-label">// 06 &middot; Travaillons ensemble</p>
+    <h2 class="s-title">Contact</h2>
+    <p class="s-sub">Un projet ? Une mission freelance ? Écrivez-moi.</p>
+  </div>
+  <div class="contact-grid reveal">
+    <div>
+      <div class="contact-items">
+        <div class="citem"><div class="citem-icon"><i class="fa fa-envelope"></i></div><span>alexislerocheleuil@gmail.com</span></div>
+        <div class="citem"><div class="citem-icon"><i class="fa fa-phone"></i></div><span>06 34 08 69 50</span></div>
+        <div class="citem"><div class="citem-icon"><i class="fa fa-location-dot"></i></div><span>Cherbourg / Remote</span></div>
+        <div class="citem"><div class="citem-icon"><i class="fa fa-wifi"></i></div><span>Disponible pour missions remote</span></div>
+      </div>
+      <div class="socials">
+        <a href="https://www.linkedin.com/in/alexis-le-rocheleuil-193935315/" target="_blank" class="soc-btn"><i class="fab fa-linkedin"></i></a>
+        <a href="https://github.com/AlexisLRC" target="_blank" class="soc-btn"><i class="fab fa-github"></i></a>
+      </div>
+    </div>
+    <form id="contact-form">
+      <div class="frow">
+        <input type="text" name="from_name" placeholder="Votre nom" required>
+        <input type="email" name="reply_to" placeholder="Votre email" required>
+      </div>
+      <input type="tel" name="phone" placeholder="Téléphone (optionnel)">
+      <input type="text" name="subject" placeholder="Sujet" required>
+      <textarea name="message" placeholder="Votre message…" required></textarea>
+      <button type="submit" class="btn-send" id="send-btn"><i class="fa fa-paper-plane"></i> Envoyer le message</button>
+    </form>
+  </div>
+</section>
 
-        <section class="services" id="services">
-            <h2 align="center" class="taille">Mes <span>Projets</span></h2>
-        
-            <div class="flex-container">
-                <div class="services-container">
-                    <a href="http://essences.btssio17.com/">
-                        <div class="service-box">
-                            <div class="service-info">
-                                <h4>Site essence de bois</h4>
-                                <p class="paragraphe"><img src="image/site.png" class="photo4"></p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="services-container">
-                    <a href="Botfinance.html">
-                        <div class="service-box">
-                            <div class="service-info">
-                                <h4>Bot finance python</h4>
-                                <p class="paragraphe"><img src="image/botfinance.png" class="photo4"></p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-                            <div class="services-container">
-                    <a href="android.html">
-                        <div class="service-box">
-                            <div class="service-info">
-                                <h4>Projet android</h4>
-                                <p class="paragraphe"><img src="image/android.gif" class="photo4"></p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </section>
+<footer>
+  <span class="footer-copy">© 2025 Alexis Le Rocheleuil — Développeur Fullstack</span>
+  <div style="display:flex;gap:10px">
+    <a href="https://github.com/AlexisLRC" target="_blank" class="soc-btn"><i class="fab fa-github"></i></a>
+    <a href="https://www.linkedin.com/in/alexis-le-rocheleuil-193935315/" target="_blank" class="soc-btn"><i class="fab fa-linkedin"></i></a>
+  </div>
+</footer>
 
-        <section class="compétences" id="compétences">
-            <h2 align="center" class="taille">Compétences</h2>
-            <div class="container">
-                <div class="row" id="compétencesContainer">
-                    <div class="bar">
-                        <div class="info">
-                            <img class="photo"   src="image/html.png">
-                            <span>Html</span>
-                        </div>
-                    </div>
-                    <div class="bar">
-                        <div class="info">
-                            <img class="photo1" src="image/css.png">
-                            <span>CSS</span>
-                        </div>
-                    </div>
-                    <div class="bar">
-                        <div class="info">
-                            <img class="photo2"   src="image/java.png">
-                            <span>Java</span>
-                        </div>
-                    </div>
-                    <div class="bar">
-                        <div class="info">
-                            <img class="photo"   src="image/javascript.png">
-                            <span>Javascript</span>
-                        </div>
-                    </div>
-                    <div class="bar">
-                        <div class="info">
-                            <img class="photo"   src="image/python.png">
-                            <span>Python</span>
-                        </div>
-                    </div>
-                    <div class="bar">
-                        <div class="info">
-                            <img class="photo3"   src="image/php.png">
-                            <span>Php</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="etude" id="etude">
-            <h2 align="center" class="taille">Mes <span>études</span></h2>
-            <div class="timeline">
-                <div class="container right">
-                    <div class="content">
-                        <div class="tag">
-                            <h2>Collège André Dulin</h2>
-                        </div>
-                        <div class="decs">
-                            <p>Situé à Aigrefeuille-d'Aunis</br>
-                                Diplôme obtenu : Diplôme National du Brevet </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="container left">
-                    <div class="content">
-                        <div class="tag">
-                            <h2>Lycée Rompsay</h2>
-                        </div>
-                        <div class="decs">
-                            <p> Situé à La Rochelle</br>
-                                Diplôme obtenu : Baccalauréat  Professionnel Système Numérique (sn) mention  Bien</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="container right">
-                    <div class="content">
-                        <div class="tag">
-                            <h2>Bts Lycée Merleau-Ponty</h2>
-                        </div>
-                        <div class="decs">
-                            <p>Rochefort</br>
-                                BTS Services Informatiques aux Organisations option Solutions Logicielles et Applications Métiers</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="contact" id="contact">
-            <h2 align="center" class="taille">Contactez <span>Moi</span></h2>
-            <form id="contact-form">
-                <div class="input-box">
-                    <input type="text" name="from_name" placeholder="Nom" required>
-                    <input type="email" name="reply_to" placeholder="Email" required>
-                    <input type="number" name="phone" placeholder="Numéro de téléphone">
-                    <input type="text" name="subject" placeholder="Sujet" required>
-                </div>
-                <textarea name="message" placeholder="Votre message" required></textarea>
-                <input type="submit" value="Envoyer le message" class="btn">
-            </form>
-        </section>
-    
-        <footer class="footer">
-            <div class="social">
-                <a href="https://www.linkedin.com/in/alexis-le-rocheleuil-193935315/"><i class="fa-brands fa-linkedin"></i></a>
-                <a href="https://github.com/1lerochA"><i class="fa-brands fa-github"></i></a>
-                <a href="#"><i class="fa-brands fa-square-instagram"></i></a>
-            </div>
-            <ul class="list">
-                <li><a href="#services">Projets</a></li>
-                <li><a href="#etude">À propos</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </footer>
-    
-        <script src="script.js"></script>
-    </body>
-    
-    </html>
+<script>
+emailjs.init('jXg14OMTd1NcqRSSF');
+const form = document.getElementById('contact-form');
+const btn = document.getElementById('send-btn');
+form.addEventListener('submit', function(e) {
+  e.preventDefault();
+  btn.disabled = true;
+  btn.innerHTML = '<i class="fa fa-spinner fa-spin"></i> Envoi en cours…';
+  const d = new FormData(form);
+  emailjs.send('default_service', 'template_hu5s7fs', {
+    from_name: d.get('from_name'),
+    reply_to:  d.get('reply_to'),
+    phone:     d.get('phone') || 'Non renseigné',
+    subject:   d.get('subject'),
+    message:   d.get('message')
+  }).then(() => {
+    btn.innerHTML = '<i class="fa fa-check"></i> Message envoyé !';
+    form.reset();
+    setTimeout(() => { btn.innerHTML = '<i class="fa fa-paper-plane"></i> Envoyer le message'; btn.disabled = false; }, 4000);
+  }).catch(err => {
+    console.error(err);
+    btn.innerHTML = '<i class="fa fa-times"></i> Erreur — réessaie';
+    btn.style.background = '#ef4444';
+    setTimeout(() => { btn.innerHTML = '<i class="fa fa-paper-plane"></i> Envoyer le message'; btn.disabled = false; btn.style.background = ''; }, 4000);
+  });
+});
+document.getElementById('menuToggle').addEventListener('click', () => {
+  document.getElementById('navbar').classList.toggle('open');
+});
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
