@@ -28,7 +28,7 @@ nav a:hover{color:var(--text)}
 .blob1{width:500px;height:500px;background:rgba(34,211,165,0.07);top:5%;right:10%;animation:drift 10s ease-in-out infinite}
 .blob2{width:350px;height:350px;background:rgba(79,142,247,0.06);bottom:15%;left:5%;animation:drift 13s ease-in-out infinite reverse}
 @keyframes drift{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(30px,-40px) scale(1.05)}}
-.hero-inner{max-width:1100px;position:relative;z-index:1}
+.hero-inner{max-width:1280px;position:relative;z-index:1}
 .hero-badge{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11.5px;color:var(--green);border:1px solid rgba(34,211,165,0.2);background:rgba(34,211,165,0.06);padding:6px 16px;border-radius:100px;margin-bottom:32px;animation:fadeUp .5s ease both}
 .dot-live{width:7px;height:7px;border-radius:50%;background:var(--green);animation:blink 2s infinite}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:0.2}}
@@ -150,7 +150,7 @@ footer{position:relative;z-index:1;padding:28px 6vw;border-top:1px solid var(--b
 <section class="hero" id="accueil">
   <div class="blob blob1"></div>
   <div class="blob blob2"></div>
-  <div class="hero-inner" style="display: flex; align-items: center; justify-content: space-between; gap: 40px; width: 100%;">
+  <div class="hero-inner" style="display: flex; align-items: center; justify-content: space-between; gap: 8vw; width: 100%;">
     <div>
       <div class="hero-badge"><div class="dot-live"></div>Disponible pour missions freelance remote</div>
       <h1>
@@ -170,9 +170,9 @@ footer{position:relative;z-index:1;padding:28px 6vw;border-top:1px solid var(--b
         </div>
       </div>
     </div>
-    <div class="hero-photo" style="flex-shrink: 0; width: 280px; height: 280px; border-radius: 50%; border: 2px solid var(--border); overflow: hidden; background: var(--surface2); display: flex; align-items: center; justify-content: center;">
+    <div class="hero-photo" style="flex-shrink: 0; width: 360px; height: 360px; border-radius: 50%; border: 2px solid var(--border); overflow: hidden; background: var(--surface2); display: flex; align-items: center; justify-content: center; margin-left: auto; box-shadow: 0 0 40px rgba(34,211,165,0.05);">
       <!-- Remplace le src par le chemin de ta photo -->
-      <img src="placeholder.jpg" alt="Photo de profil" style="width: 100%; height: 100%; object-fit: cover;">
+      <img src="img1.png" alt="Photo de profil" style="width: 100%; height: 100%; object-fit: cover;">
     </div>
   </div>
 </section>
@@ -280,7 +280,7 @@ footer{position:relative;z-index:1;padding:28px 6vw;border-top:1px solid var(--b
       <p>Développeur Fullstack · Alternant CDA à l'EAMEA · Disponible pour missions freelance ponctuelles en remote.<br>React, Node.js, Symfony, Python, PHP, SQL.</p>
       <div class="cv-btns">
         <a href="CV_Alexis_LeRocheleuil.pdf" download="CV_Alexis_LeRocheleuil.pdf" class="cv-dl"><i class="fa fa-download"></i> Télécharger le PDF</a>
-        <a href="Cv.html" class="cv-view"><i class="fa fa-eye"></i> Voir en ligne</a>
+        <a href="cv.html" class="cv-view"><i class="fa fa-eye"></i> Voir en ligne</a>
       </div>
     </div>
     <div class="cv-preview" style="padding: 0; display: block; overflow: hidden; width: 380px; height: 537px; border-radius: 8px; flex-shrink: 0; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
